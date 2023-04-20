@@ -4,16 +4,14 @@ import {
   ImageBackground,
   TouchableWithoutFeedback,
   Keyboard,
-  KeyboardAvoidingView,
-  Platform,
 } from "react-native";
 
 import { useFonts } from "expo-font";
 
 import { useState, useCallback } from "react";
 
-import LoginScreen from "./src/Screens/LoginScreen";
-import RegistrationScreen from "./src/Screens/RegistrationScreen";
+import LoginScreen from "./components/Screens/LoginScreen";
+import RegistrationScreen from "./components/Screens/RegistrationScreen";
 import * as SplashScreen from "expo-splash-screen";
 SplashScreen.preventAutoHideAsync();
 
@@ -42,15 +40,11 @@ export default function App() {
         }}
       >
         <ImageBackground style={styles.imageBacgr} source={image}>
-          <KeyboardAvoidingView
-            behavior={Platform.OS == "ios" ? "padding" : "height"}
-          >
-            {login ? (
-              <LoginScreen setLogin={setLogin} />
-            ) : (
-              <RegistrationScreen setLogin={setLogin} />
-            )}
-          </KeyboardAvoidingView>
+          {login ? (
+            <LoginScreen setLogin={setLogin} />
+          ) : (
+            <RegistrationScreen setLogin={setLogin} />
+          )}
         </ImageBackground>
       </TouchableWithoutFeedback>
     </View>
@@ -60,6 +54,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // justifyContent: "flex-end",
   },
   imageBacgr: {
     flex: 1,
