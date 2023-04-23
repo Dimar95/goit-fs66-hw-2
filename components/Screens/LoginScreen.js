@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   StyleSheet,
   View,
@@ -16,7 +16,6 @@ import { object, string } from "yup";
 
 const LoginScreen = ({ setLogin }) => {
   const [showPass, setShowPass] = useState(true);
-
   const userSchema = object({
     name: string()
       .required("Обязательное поле")
@@ -38,10 +37,11 @@ const LoginScreen = ({ setLogin }) => {
   const onShowPass = () => {
     setShowPass(false);
     setTimeout(() => {
+      console.log("ddd");
       setShowPass(true);
     }, 1000);
   };
-
+  useEffect(() => {}, []);
   return (
     <KeyboardAvoidingView
       style={styles.containerKeyboardAvoidingView}
@@ -151,6 +151,10 @@ const styles = StyleSheet.create({
     lineHeight: 19,
     color: "#212121",
     padding: 16,
+  },
+  inputActiv: {
+    borderColor: "#FF6C00",
+    backgroundColor: "#fff",
   },
   button: {
     backgroundColor: "#FF6C00",
